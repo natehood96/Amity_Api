@@ -1,5 +1,5 @@
 const httpRequest = require('./httpRequest');
-const amityOAuthToken = "xoxb-886820869057-952795023555-CL1jFYywckCDSCkOmOzrrTeI";
+const amityOAuthToken = "xoxb-886820869057-952795023555-ge807r77O0oP7ePH2F5j9eMn";
 
 getListUsers = function(oAuthToken, next) {
     endPoint = `https://slack.com/api/users.list?token=${oAuthToken}&pretty=1`;
@@ -30,3 +30,7 @@ exports.getListUsers = getListUsers;
 exports.postMessage = postMessage;
 exports.openConversation = openConversation;
 exports.openGroupConvsersation = openGroupConvsersation;
+
+getListUsers(amityOAuthToken, function(response) {
+    console.log(response);
+});
