@@ -25,6 +25,46 @@ openGroupConvsersation = function(oAuthToken, users, next) {
     endPoint = `https://slack.com/api/conversations.open?token=${oAuthToken}&users=${usersArg}&pretty=1`;
     httpRequest.post(endPoint, null, next);
 }
+    
+onboardUser = function(oAuthToken, userID, next) {
+    endpoint = `https://slack.com/api/views.publish?token=${oAuthToken}&user_id=${userID}`
+    httpRequest.post(endPoint, {
+        "user_id": "YOUR_USER_ID",
+        "view": { 
+             "type":"home",
+             "blocks":[ 
+                { 
+                   "type":"section",
+                   "text":{ 
+                      "type":"mrkdwn",
+                      "text":"A simple stack of blocks for the simple sample Block Kit Home tab."
+                   }
+                },
+                { 
+                   "type":"actions",
+                   "elements":[ 
+                      { 
+                         "type":"button",
+                         "text":{ 
+                            "type":"plain_text",
+                            "text":"Action A",
+                            "emoji":true
+                         }
+                      },
+                      { 
+                         "type":"button",
+                         "text":{ 
+                            "type":"plain_text",
+                            "text":"Action B",
+                            "emoji":true
+                         }
+                      }
+                   ]
+                }
+             ]
+          }
+      }, next)
+}
 
 exports.getListUsers = getListUsers;
 exports.postMessage = postMessage;
