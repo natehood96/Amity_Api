@@ -9,10 +9,9 @@ var User = require('../models/neo4j/user');
 var crypto = require('crypto');
 
 var deleteData = function (session, interestData, userData) {
-    return session.run(
-    {
-
-    }).then(results =>{
+    return session.run('MATCH (n) DETACH DELETE n',
+    {}).then(results =>{
+        console.log(results);
         throw{DELETED: 'Everything has been deleted.', status: 201}
     });
 }
